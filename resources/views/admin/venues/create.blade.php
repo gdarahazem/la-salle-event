@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.venue.title_singular') }}
+        Create Event
     </div>
 
     <div class="card-body">
@@ -21,6 +21,16 @@
                     {{ trans('cruds.venue.fields.name_helper') }}
                 </p>
             </div>
+            <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
+                <label for="event_date">Event Date*</label>
+                <input type="date" id="event_date" name="event_date" class="form-control" value="{{ old('event_date') }}" required>
+                @if($errors->has('event_date'))
+                    <span class="help-block">
+            {{ $errors->first('event_date') }}
+        </span>
+                @endif
+            </div>
+
             <div class="form-group {{ $errors->has('photos') ? 'has-error' : '' }}">
                 <label for="photos">{{ trans('cruds.venue.fields.photos') }}</label>
                 <div class="needsclick dropzone" id="photos-dropzone">

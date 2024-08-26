@@ -26,10 +26,16 @@ class Schedule extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        "event_id",
     ];
 
     public function speaker()
     {
         return $this->belongsTo(Speaker::class, 'speaker_id');
+    }
+
+    public function venue()
+    {
+        return $this->belongsTo(Venue::class, 'event_id');
     }
 }

@@ -159,6 +159,8 @@ return [
             'deleted_at_helper'  => '',
             'description'        => 'Description',
             'description_helper' => '',
+            'date'               => 'Date',
+            'date_helper'        => '',
         ],
     ],
     'hotel'          => [

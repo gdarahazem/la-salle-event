@@ -41,6 +41,9 @@
                             {{ trans('cruds.schedule.fields.speaker') }}
                         </th>
                         <th>
+                            Event
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -68,6 +71,9 @@
                             </td>
                             <td>
                                 {{ $schedule->speaker->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $schedule->venue->name ?? '' }}
                             </td>
                             <td>
                                 @can('schedule_show')

@@ -12,7 +12,7 @@ class Venue extends Model implements HasMedia
 {
     use SoftDeletes, InteractsWithMedia;
 
-    public $table = 'venues';
+    public $table = 'events';
 
     protected $appends = [
         'photos',
@@ -29,6 +29,7 @@ class Venue extends Model implements HasMedia
         'address',
         'latitude',
         'longitude',
+        'event_date',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -49,5 +50,10 @@ class Venue extends Model implements HasMedia
         });
 
         return $files;
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class, 'event_id', 'id');
     }
 }

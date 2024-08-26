@@ -8,6 +8,7 @@ use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
 use App\Schedule;
 use App\Speaker;
+use App\Venue;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class ScheduleController extends Controller
     {
         abort_if(Gate::denies('schedule_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $schedules = Schedule::all();
+        $schedules = Schedule::query()->with(['speaker', 'venue'])->get();
 
         return view('admin.schedules.index', compact('schedules'));
     }
@@ -27,9 +28,10 @@ class ScheduleController extends Controller
     {
         abort_if(Gate::denies('schedule_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $speakers = Speaker::all()->pluck('name', 'id')->prepend('Please select', '');
+        $events = Venue::all()->pluck('name', 'id')->prepend('Please select', '');
 
-        return view('admin.schedules.create', compact('speakers'));
+        return view('admin.schedules.create', compact('speakers', 'events'));
     }
 
     public function store(StoreScheduleRequest $request)
@@ -44,10 +46,11 @@ class ScheduleController extends Controller
         abort_if(Gate::denies('schedule_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $speakers = Speaker::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $events = Venue::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $schedule->load('speaker');
+        $schedule->load('speaker', 'venue');
 
-        return view('admin.schedules.edit', compact('speakers', 'schedule'));
+        return view('admin.schedules.edit', compact('speakers', 'events', 'schedule'));
     }
 
     public function update(UpdateScheduleRequest $request, Schedule $schedule)
@@ -61,7 +64,7 @@ class ScheduleController extends Controller
     {
         abort_if(Gate::denies('schedule_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $schedule->load('speaker');
+        $schedule->load(['speaker', 'venue']);
 
         return view('admin.schedules.show', compact('schedule'));
     }

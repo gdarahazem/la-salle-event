@@ -12,6 +12,7 @@ use App\Sponsor;
 use App\Faq;
 use App\Price;
 use App\Amenity;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -19,11 +20,11 @@ class HomeController extends Controller
     {
         $settings = Setting::pluck('value', 'key');
         $speakers = Speaker::all();
-        $schedules = Schedule::with('speaker')
+        $schedules = Schedule::with('speaker', 'venue')
             ->orderBy('start_time', 'asc')
             ->get()
             ->groupBy('day_number');
-        $venues = Venue::all();
+        $venues = Venue::where('event_date', '>=', Carbon::today()->toDateString())->get();
         $hotels = Hotel::all();
         $galleries = Gallery::all();
         $sponsors = Sponsor::all();
@@ -37,7 +38,7 @@ class HomeController extends Controller
     public function view(Speaker $speaker)
     {
         $settings = Setting::pluck('value', 'key');
-        
+
         return view('speaker', compact('settings', 'speaker'));
     }
 }

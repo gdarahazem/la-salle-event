@@ -13,15 +13,21 @@
       @endforeach
     </ul>
 
-    <h3 class="sub-heading">Voluptatem nulla veniam soluta et corrupti consequatur neque eveniet officia. Eius
-      necessitatibus voluptatem quis labore perspiciatis quia.</h3>
+      <h3 class="sub-heading">
+          Explore our lineup of upcoming events and secure your place at engaging and informative sessions led by industry experts.
+      </h3>
 
-    <div class="tab-content row justify-content-center">
+
+      <div class="tab-content row justify-content-center">
       @foreach($schedules as $key => $day)
         <div role="tabpanel" class="col-lg-9 tab-pane fade{{ $key === 1 ? ' show active' : '' }}" id="day-{{ $key }}">
           @foreach($day as $schedule)
             <div class="row schedule-item">
-              <div class="col-md-2"><time>{{ \Carbon\Carbon::parse($schedule->start_time)->format("h:i A") }}</time></div>
+              <div class="col-md-2">
+                  <span>{{ $schedule->venue->name }}</span>
+                  <date>{{ \Carbon\Carbon::parse($schedule->venue->event_date)->format("d M") }}</date><br>
+                  <time>{{ \Carbon\Carbon::parse($schedule->start_time)->format("h:i A") }}</time><br>
+              </div>
               <div class="col-md-10">
                 @if($schedule->speaker)
                   <div class="speaker">

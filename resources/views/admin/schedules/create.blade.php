@@ -70,6 +70,20 @@
                     </p>
                 @endif
             </div>
+            <div class="form-group {{ $errors->has('event_id') ? 'has-error' : '' }}">
+                <label for="event">Event</label>
+                <select name="event_id" id="event" class="form-control select2">
+                    @foreach($events as $id => $event)
+                        <option value="{{ $id }}" {{ old('event_id') == $id ? 'selected' : '' }}>{{ $event }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('event_id'))
+                    <p class="help-block">
+                        {{ $errors->first('event_id') }}
+                    </p>
+                @endif
+            </div>
+
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>

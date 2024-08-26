@@ -4,14 +4,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.venues.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.venue.title_singular') }}
+                Add Event
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.venue.title_singular') }} {{ trans('global.list') }}
+        Event List
     </div>
 
     <div class="card-body">
@@ -33,6 +33,9 @@
                         </th>
                         <th>
                             {{ trans('cruds.venue.fields.latitude') }}
+                        </th>
+                        <th>
+                            Date
                         </th>
                         <th>
                             {{ trans('cruds.venue.fields.longitude') }}
@@ -59,6 +62,9 @@
                             </td>
                             <td>
                                 {{ $venue->latitude ?? '' }}
+                            </td>
+                            <td>
+                                {{ $venue->event_date ?? '' }}
                             </td>
                             <td>
                                 {{ $venue->longitude ?? '' }}
