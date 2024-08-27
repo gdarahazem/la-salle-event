@@ -55,7 +55,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ $venue->name }}</h5>
+                                        <h5 class="card-title">
+                                            <a href="{{ route('venues.show.visitor', ['venue' => $venue->id]) }}">{{ $venue->name }}</a>
+                                        </h5>
                                         <p class="card-date">Event Date: {{ \Carbon\Carbon::parse($venue->event_date)->format('M d, Y') }}</p>
                                         <div class="venue-gallery-container">
                                             @if($venue->photos)

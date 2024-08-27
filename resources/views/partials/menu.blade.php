@@ -175,7 +175,7 @@
 
                             </i>
                             <p>
-                                <span>{{ trans('cruds.amenity.title') }}</span>
+                                <span>Marketplace</span>
                             </p>
                         </a>
                     </li>

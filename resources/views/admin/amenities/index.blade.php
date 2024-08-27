@@ -4,14 +4,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.amenities.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.amenity.title_singular') }}
+                Add
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.amenity.title_singular') }} {{ trans('global.list') }}
+        MarketPlace List
     </div>
 
     <div class="card-body">
@@ -23,10 +23,16 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.amenity.fields.id') }}
+                            ID
                         </th>
                         <th>
-                            {{ trans('cruds.amenity.fields.name') }}
+                            Name
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+                        <th>
+                            Email
                         </th>
                         <th>
                             &nbsp;
@@ -44,6 +50,12 @@
                             </td>
                             <td>
                                 {{ $amenity->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $amenity->phone ?? '' }}
+                            </td>
+                            <td>
+                                {{ $amenity->email ?? '' }}
                             </td>
                             <td>
                                 @can('amenity_show')
@@ -65,6 +77,10 @@
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
                                 @endcan
+
+                                    <a class="btn btn-xs btn-warning" href="mailto:{{ $amenity->email }}">
+                                        Contacter par mail
+                                    </a>
 
                             </td>
 

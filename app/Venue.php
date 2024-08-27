@@ -30,6 +30,7 @@ class Venue extends Model implements HasMedia
         'latitude',
         'longitude',
         'event_date',
+        'price',
         'created_at',
         'updated_at',
         'deleted_at',

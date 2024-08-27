@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\VenuesController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('speaker/{speaker}', 'HomeController@view')->name('speaker');
 Route::redirect('/home', '/admin');
+Route::get("events/{venue}/show", [VenuesController::class, "showVisitor"])->name("venues.show.visitor");
+
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {

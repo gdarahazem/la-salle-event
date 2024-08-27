@@ -7,6 +7,8 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyVenueRequest;
 use App\Http\Requests\StoreVenueRequest;
 use App\Http\Requests\UpdateVenueRequest;
+use App\Schedule;
+use App\Setting;
 use App\Venue;
 use Gate;
 use Illuminate\Http\Request;
@@ -95,4 +97,21 @@ class VenuesController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
-}
+
+    public function showVisitor(Venue $venue)
+    {
+        $venue->load('schedules');
+        $settings = Setting::pluck('value', 'key');
+
+        $schedules = Schedule::with('speaker', 'venue')
+            ->where('event_id', $venue->id)
+            ->orderBy('start_time', 'asc')
+            ->get()
+            ->groupBy('day_number');
+
+        return view('showVenues', [
+            'venue' => $venue,
+            'settings' => $settings,
+            'schedules' => $schedules,
+        ]);
+    }}
