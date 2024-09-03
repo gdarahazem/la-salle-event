@@ -36,7 +36,7 @@
 
                 <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                     <label for="price">Price*</label>
-                    <input type="number" step="0.01" id="price" name="price" class="form-control"
+                    <input type="number" step="1" id="price" name="price" class="form-control"
                            value="{{ old('price', isset($venue) ? $venue->price : '') }}" required>
                     @if($errors->has('price'))
                         <p class="help-block">

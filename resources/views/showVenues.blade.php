@@ -37,7 +37,6 @@
                     Explore our lineup of upcoming events and secure your place at engaging and informative sessions led by industry experts.
                 </h3>
 
-
                 <div class="tab-content row justify-content-center">
                     @foreach($schedules as $key => $day)
                         <div role="tabpanel" class="col-lg-9 tab-pane fade{{ $key === 1 ? ' show active' : '' }}" id="day-{{ $key }}">
@@ -63,13 +62,52 @@
                     @endforeach
                 </div>
             </div>
+
             <div class="text-center mt-4">
                 <!-- Display the Venue Price -->
                 <h4>Ticket Price: {{ number_format($venue->price, 2) }} TND</h4>
-                <button type="button" class="btn btn-danger btn-rounded mt-3">Buy Tickets</button>
+                <button type="button" class="btn btn-danger btn-rounded mt-3"
+                        data-toggle="modal"
+                        data-target="#ticketModal">
+                    {{ $venue->price > 0 ? 'Buy Tickets' : 'Get Ticket' }}
+                </button>
             </div>
 
         </section>
 
     </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="ticketModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ticketModalLabel">Get Ticket for {{ $venue->name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('tickets.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="event_id" value="{{ $venue->id }}">
+                        <div class="form-group">
+                            <label for="user_name">Your Name</label>
+                            <input type="text" class="form-control" id="user_name" name="user_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_email">Your Email</label>
+                            <input type="email" class="form-control" id="user_email" name="user_email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_phone">Your Phone Number</label>
+                            <input type="text" class="form-control" id="user_phone" name="user_phone" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

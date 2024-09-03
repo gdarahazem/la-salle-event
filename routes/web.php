@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\VenuesController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +9,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('speaker/{speaker}', 'HomeController@view')->name('speaker');
 Route::redirect('/home', '/admin');
 Route::get("events/{venue}/show", [VenuesController::class, "showVisitor"])->name("venues.show.visitor");
+
+Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
+
 
 Auth::routes(['register' => false]);
 

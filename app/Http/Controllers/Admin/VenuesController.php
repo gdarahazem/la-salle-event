@@ -37,7 +37,6 @@ class VenuesController extends Controller
     public function store(StoreVenueRequest $request)
     {
         $venue = Venue::create($request->all());
-
         foreach ($request->input('photos', []) as $file) {
             $venue->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('photos');
         }
