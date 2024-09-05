@@ -88,7 +88,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('tickets.store') }}" method="POST">
+                    <form action="{{ $venue->price > 0 ? route('formation.init.payment', $venue->id) : route('tickets.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="event_id" value="{{ $venue->id }}">
                         <div class="form-group">
@@ -105,6 +105,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+
                 </div>
             </div>
         </div>

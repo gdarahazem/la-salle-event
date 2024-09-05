@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 02 sep. 2024 à 18:20
+-- Généré le : jeu. 05 sep. 2024 à 06:36
 -- Version du serveur : 8.2.0
 -- Version de PHP : 7.4.33
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `events` (
     `longitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `description` longtext COLLATE utf8mb4_unicode_ci,
     `event_date` date DEFAULT NULL,
-    `price` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `price` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     `deleted_at` timestamp NULL DEFAULT NULL,
@@ -90,9 +90,9 @@ CREATE TABLE IF NOT EXISTS `events` (
 INSERT INTO `events` (`id`, `name`, `address`, `latitude`, `longitude`, `description`, `event_date`, `price`, `created_at`, `updated_at`, `deleted_at`) VALUES
                                                                                                                                                             (1, 'test', 'Manar 2', '12', '15', 'test', NULL, '200', '2024-08-26 17:42:56', '2024-08-26 19:04:42', '2024-08-26 19:04:42'),
                                                                                                                                                             (2, 'test2', 'Menzeh', '15', '165', 'qsdqsd', NULL, '130', '2024-08-26 17:43:46', '2024-08-26 19:04:44', '2024-08-26 19:04:44'),
-                                                                                                                                                            (3, 'test333u', 'Dar chabeen fehri', '55', '58', 'qsd', '2024-08-28', '120', '2024-08-26 18:28:43', '2024-08-27 15:02:56', NULL),
-                                                                                                                                                            (4, 'qsdfqdsqsd', 'Dar chabeen fehri', '10', '11', 'qsd', '2025-05-14', '70', '2024-08-26 18:32:03', '2024-08-26 18:32:03', NULL),
-                                                                                                                                                            (5, 'Esprit Event', 'Esprit Chargia 2', '36.853278', '10.1247869', 'Formation machine learning', '2024-08-31', '40', '2024-08-28 19:16:10', '2024-08-28 19:16:10', NULL);
+                                                                                                                                                            (3, 'Integration Day', 'Dar chabeen fehri', '55', '58', 'qsd', '2025-08-28', '120', '2024-08-26 18:28:43', '2024-09-03 09:46:15', NULL),
+                                                                                                                                                            (4, 'La salle Event', 'Dar chabeen fehri', '10', '11', 'Learning day', '2025-05-14', '70', '2024-08-26 18:32:03', '2024-09-02 22:45:59', NULL),
+                                                                                                                                                            (5, 'Esprit Event', 'Esprit Chargia 2', '36.853278', '10.1247869', 'Formation machine learning', '2025-08-31', '0', '2024-08-28 19:16:10', '2024-09-03 09:46:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -664,8 +664,8 @@ CREATE TABLE IF NOT EXISTS `schedules` (
 --
 
 INSERT INTO `schedules` (`id`, `day_number`, `start_time`, `title`, `subtitle`, `created_at`, `updated_at`, `deleted_at`, `speaker_id`, `event_id`) VALUES
-                                                                                                                                                        (1, 1, '20:45:20', 'introduction', 'qsdqsd', '2024-08-26 18:45:40', '2024-08-26 19:14:53', NULL, 1, 4),
-                                                                                                                                                        (2, 1, '20:58:06', 'test', 'qsdqsd', '2024-08-26 18:58:26', '2024-08-26 18:58:26', NULL, 3, 3),
+                                                                                                                                                        (1, 1, '20:45:20', 'introduction', 'introduction', '2024-08-26 18:45:40', '2024-09-02 22:47:02', NULL, 1, 4),
+                                                                                                                                                        (2, 1, '20:58:06', 'test', 'test', '2024-08-26 18:58:26', '2024-09-02 22:46:56', NULL, NULL, 3),
                                                                                                                                                         (3, 1, '15:00:00', 'Machine learning introduction', 'Machine learning introduction', '2024-08-28 19:17:54', '2024-08-28 19:17:54', NULL, 1, 5),
                                                                                                                                                         (4, 2, '15:17:58', 'Practice day', 'Practice day', '2024-08-28 19:18:26', '2024-08-28 19:18:26', NULL, 5, 5);
 
@@ -734,11 +734,11 @@ CREATE TABLE IF NOT EXISTS `speakers` (
 --
 
 INSERT INTO `speakers` (`id`, `name`, `description`, `twitter`, `facebook`, `linkedin`, `full_description`, `created_at`, `updated_at`, `deleted_at`) VALUES
-                                                                                                                                                          (1, 'hazem1', 'Quas alias incidunt', '#', '#', '#', 'Fugiat dolorem iure velit occaecati sit quas. Tenetur sint quos vitae occaecati. Perferendis rem repudiandae reiciendis ullam temporibus ipsa nemo.', '2024-08-25 16:51:37', '2024-08-27 13:15:38', NULL),
-                                                                                                                                                          (2, 'amal', 'Consequuntur odio aut', '#', '#', '#', 'Est libero quos nam omnis assumenda omnis a. Placeat incidunt alias nostrum rem voluptatem sunt ab. Quia rerum facere laboriosam. Quo eos est eius praesentium in ea.', '2024-08-25 16:51:41', '2024-08-27 13:15:45', NULL),
+                                                                                                                                                          (1, 'hazem1', 'Coach 4', '#', '#', '#', 'Coach 4 Coach 4 Coach 4', '2024-08-25 16:51:37', '2024-09-02 22:45:02', NULL),
+                                                                                                                                                          (2, 'amal', 'Coach 3', '#', '#', '#', 'Coach 3 Coach 3', '2024-08-25 16:51:41', '2024-09-02 22:44:39', NULL),
                                                                                                                                                           (3, 'Hannen', 'Fugiat laborum et', '#', '#', '#', 'Qui molestiae dignissimos dolores. Vel omnis sunt ut perspiciatis impedit. Ut suscipit delectus dolorem recusandae soluta assumenda. Et tempora unde qui. Officia omnis consequuntur eligendi aut.', '2024-08-25 16:51:41', '2024-08-28 19:12:33', '2024-08-28 19:12:33'),
-                                                                                                                                                          (4, 'Soulayma', 'Debitis iure vero', '#', '#', '#', 'Sit reiciendis eveniet blanditiis ipsum ut tempora. Qui rerum sed magnam. Neque voluptatem ut iste sunt saepe assumenda. Iusto eligendi laborum sunt ratione earum in libero.', '2024-08-25 16:51:41', '2024-08-27 13:16:03', NULL),
-                                                                                                                                                          (5, 'Samah', 'Qui molestiae natus', '#', '#', '#', 'Et provident et non laboriosam culpa officiis explicabo. Id placeat rerum quibusdam. Ea quo iure odit a sunt. Provident cupiditate dolorem veniam fugiat eum non.', '2024-08-25 16:51:42', '2024-08-27 13:16:08', NULL);
+                                                                                                                                                          (4, 'Soulayma', 'Coach 2', '#', '#', '#', 'Coach 2 Coach 2', '2024-08-25 16:51:41', '2024-09-02 22:44:27', NULL),
+                                                                                                                                                          (5, 'Samah', 'Coach1', '#', '#', '#', 'Coach1 Coach1', '2024-08-25 16:51:42', '2024-09-02 22:44:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -756,6 +756,34 @@ CREATE TABLE IF NOT EXISTS `sponsors` (
     `deleted_at` timestamp NULL DEFAULT NULL,
     PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tickets`
+--
+
+DROP TABLE IF EXISTS `tickets`;
+CREATE TABLE IF NOT EXISTS `tickets` (
+                                         `id` int NOT NULL AUTO_INCREMENT,
+                                         `event_id` int NOT NULL,
+                                         `user_name` varchar(255) NOT NULL,
+    `user_email` varchar(255) NOT NULL,
+    `user_phone` varchar(20) NOT NULL,
+    `pay_ref` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+    `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    KEY `event_id` (`event_id`)
+    ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `tickets`
+--
+
+INSERT INTO `tickets` (`id`, `event_id`, `user_name`, `user_email`, `user_phone`, `pay_ref`, `created_at`, `updated_at`) VALUES
+                                                                                                                             (1, 5, 'Amal', 'Amal@gmail.com', '55851451', '', '2024-09-03 10:06:25', '2024-09-03 10:06:25'),
+                                                                                                                             (2, 5, 'amal2', 'amal2@gmail.com', '92684418', NULL, '2024-09-03 12:02:27', '2024-09-03 12:02:27');
 
 -- --------------------------------------------------------
 
