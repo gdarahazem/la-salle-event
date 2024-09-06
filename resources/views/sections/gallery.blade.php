@@ -1,10 +1,11 @@
 <section id="gallery" class="wow fadeInUp">
 
   <div class="container">
-    <div class="section-header">
-      <h2>Gallery</h2>
-      <p>Check our gallery from the recent events</p>
-    </div>
+      <div class="section-header">
+          <h2>Galerie</h2>
+          <p>Consultez notre galerie des événements récents</p>
+      </div>
+
   </div>
   @foreach($galleries as $gallery)
     <div class="owl-carousel gallery-carousel">

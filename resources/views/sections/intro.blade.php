@@ -6,6 +6,6 @@
       <a href="{{ $settings['youtube_link'] }}" class="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a>
     @endif
-    <a href="#about" class="about-btn scrollto">About US</a>
+    <a href="#about" class="about-btn scrollto">À propos de nous</a>
   </div>
 </section>

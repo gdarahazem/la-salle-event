@@ -39,9 +39,10 @@
 <section id="venue" class="wow fadeInUp">
     <div class="container">
         <div class="section-header text-center mb-5">
-            <h2>Upcoming Event</h2>
-            <p>Explore the venue and gallery for our next exciting event.</p>
+            <h2>Événement à venir</h2>
+            <p>Découvrez le lieu et la galerie de notre prochain événement passionnant.</p>
         </div>
+
 
         <!-- Bootstrap Carousel with Improved Cards -->
         <div id="venueCarousel" class="carousel slide" data-ride="carousel">

@@ -1,10 +1,11 @@
 <section id="hotels" class="section-with-bg wow fadeInUp">
 
   <div class="container">
-    <div class="section-header">
-      <h2>Hotels</h2>
-      <p>Here are some nearby hotels</p>
-    </div>
+      <div class="section-header">
+          <h2>Hôtels</h2>
+          <p>Voici quelques hôtels à proximité</p>
+      </div>
+
 
     <div class="row">
       @foreach($hotels as $hotel)

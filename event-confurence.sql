@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 05 sep. 2024 à 06:36
--- Version du serveur : 8.2.0
--- Version de PHP : 7.4.33
+-- Généré le : ven. 06 sep. 2024 à 15:51
+-- Version du serveur : 5.7.31
+-- Version de PHP : 8.1.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `amenities`;
 CREATE TABLE IF NOT EXISTS `amenities` (
-                                           `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                           `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                                           `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `phone` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
@@ -55,9 +55,9 @@ INSERT INTO `amenities` (`id`, `name`, `email`, `phone`, `created_at`, `updated_
 
 DROP TABLE IF EXISTS `amenity_price`;
 CREATE TABLE IF NOT EXISTS `amenity_price` (
-                                               `price_id` int UNSIGNED NOT NULL,
-                                               `amenity_id` int UNSIGNED NOT NULL,
-                                               KEY `price_id_fk_384063` (`price_id`),
+                                               `price_id` int(10) UNSIGNED NOT NULL,
+    `amenity_id` int(10) UNSIGNED NOT NULL,
+    KEY `price_id_fk_384063` (`price_id`),
     KEY `amenity_id_fk_384063` (`amenity_id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -69,14 +69,14 @@ CREATE TABLE IF NOT EXISTS `amenity_price` (
 
 DROP TABLE IF EXISTS `events`;
 CREATE TABLE IF NOT EXISTS `events` (
-                                        `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                        `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                        `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `latitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `longitude` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `description` longtext COLLATE utf8mb4_unicode_ci,
     `event_date` date DEFAULT NULL,
-    `price` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+    `price` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     `deleted_at` timestamp NULL DEFAULT NULL,
@@ -102,8 +102,8 @@ INSERT INTO `events` (`id`, `name`, `address`, `latitude`, `longitude`, `descrip
 
 DROP TABLE IF EXISTS `faqs`;
 CREATE TABLE IF NOT EXISTS `faqs` (
-                                      `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                      `question` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                      `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `question` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `answer` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
@@ -119,8 +119,8 @@ CREATE TABLE IF NOT EXISTS `faqs` (
 
 DROP TABLE IF EXISTS `galleries`;
 CREATE TABLE IF NOT EXISTS `galleries` (
-                                           `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                           `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                           `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     `deleted_at` timestamp NULL DEFAULT NULL,
@@ -135,11 +135,11 @@ CREATE TABLE IF NOT EXISTS `galleries` (
 
 DROP TABLE IF EXISTS `hotels`;
 CREATE TABLE IF NOT EXISTS `hotels` (
-                                        `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                        `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                        `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `description` longtext COLLATE utf8mb4_unicode_ci,
-    `rating` int DEFAULT NULL,
+    `rating` int(11) DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     `deleted_at` timestamp NULL DEFAULT NULL,
@@ -161,9 +161,9 @@ INSERT INTO `hotels` (`id`, `name`, `address`, `description`, `rating`, `created
 
 DROP TABLE IF EXISTS `media`;
 CREATE TABLE IF NOT EXISTS `media` (
-                                       `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                       `model_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `model_id` bigint UNSIGNED NOT NULL,
+                                       `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `model_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `model_id` bigint(20) UNSIGNED NOT NULL,
     `uuid` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `collection_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -171,11 +171,11 @@ CREATE TABLE IF NOT EXISTS `media` (
     `mime_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `disk` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `conversions_disk` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `size` bigint UNSIGNED NOT NULL,
+    `size` bigint(20) UNSIGNED NOT NULL,
     `manipulations` json NOT NULL,
     `custom_properties` json NOT NULL,
     `responsive_images` json NOT NULL,
-    `order_column` int UNSIGNED DEFAULT NULL,
+    `order_column` int(10) UNSIGNED DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
@@ -208,9 +208,9 @@ INSERT INTO `media` (`id`, `model_type`, `model_id`, `uuid`, `collection_name`, 
 
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
-                                            `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                            `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `batch` int NOT NULL,
+                                            `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `batch` int(11) NOT NULL,
     PRIMARY KEY (`id`)
     ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -253,8 +253,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 DROP TABLE IF EXISTS `oauth_access_tokens`;
 CREATE TABLE IF NOT EXISTS `oauth_access_tokens` (
                                                      `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `user_id` bigint UNSIGNED DEFAULT NULL,
-    `client_id` bigint UNSIGNED NOT NULL,
+    `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+    `client_id` bigint(20) UNSIGNED NOT NULL,
     `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `scopes` text COLLATE utf8mb4_unicode_ci,
     `revoked` tinyint(1) NOT NULL,
@@ -274,8 +274,8 @@ CREATE TABLE IF NOT EXISTS `oauth_access_tokens` (
 DROP TABLE IF EXISTS `oauth_auth_codes`;
 CREATE TABLE IF NOT EXISTS `oauth_auth_codes` (
                                                   `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `user_id` bigint UNSIGNED NOT NULL,
-    `client_id` bigint UNSIGNED NOT NULL,
+    `user_id` bigint(20) UNSIGNED NOT NULL,
+    `client_id` bigint(20) UNSIGNED NOT NULL,
     `scopes` text COLLATE utf8mb4_unicode_ci,
     `revoked` tinyint(1) NOT NULL,
     `expires_at` datetime DEFAULT NULL,
@@ -291,9 +291,9 @@ CREATE TABLE IF NOT EXISTS `oauth_auth_codes` (
 
 DROP TABLE IF EXISTS `oauth_clients`;
 CREATE TABLE IF NOT EXISTS `oauth_clients` (
-                                               `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-                                               `user_id` bigint UNSIGNED DEFAULT NULL,
-                                               `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                               `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+    `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `provider` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -314,11 +314,11 @@ CREATE TABLE IF NOT EXISTS `oauth_clients` (
 
 DROP TABLE IF EXISTS `oauth_personal_access_clients`;
 CREATE TABLE IF NOT EXISTS `oauth_personal_access_clients` (
-                                                               `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-                                                               `client_id` bigint UNSIGNED NOT NULL,
-                                                               `created_at` timestamp NULL DEFAULT NULL,
-                                                               `updated_at` timestamp NULL DEFAULT NULL,
-                                                               PRIMARY KEY (`id`)
+                                                               `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `client_id` bigint(20) UNSIGNED NOT NULL,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -359,8 +359,8 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 
 DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
-                                             `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                             `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                                             `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     `deleted_at` timestamp NULL DEFAULT NULL,
@@ -447,9 +447,9 @@ INSERT INTO `permissions` (`id`, `title`, `created_at`, `updated_at`, `deleted_a
 
 DROP TABLE IF EXISTS `permission_role`;
 CREATE TABLE IF NOT EXISTS `permission_role` (
-                                                 `role_id` int UNSIGNED NOT NULL,
-                                                 `permission_id` int UNSIGNED NOT NULL,
-                                                 KEY `role_id_fk_383833` (`role_id`),
+                                                 `role_id` int(10) UNSIGNED NOT NULL,
+    `permission_id` int(10) UNSIGNED NOT NULL,
+    KEY `role_id_fk_383833` (`role_id`),
     KEY `permission_id_fk_383833` (`permission_id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -583,8 +583,8 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 
 DROP TABLE IF EXISTS `prices`;
 CREATE TABLE IF NOT EXISTS `prices` (
-                                        `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                        `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                        `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `price` decimal(15,2) NOT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
@@ -600,8 +600,8 @@ CREATE TABLE IF NOT EXISTS `prices` (
 
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
-                                       `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                       `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                                       `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     `deleted_at` timestamp NULL DEFAULT NULL,
@@ -624,9 +624,9 @@ INSERT INTO `roles` (`id`, `title`, `created_at`, `updated_at`, `deleted_at`) VA
 
 DROP TABLE IF EXISTS `role_user`;
 CREATE TABLE IF NOT EXISTS `role_user` (
-                                           `user_id` int UNSIGNED NOT NULL,
-                                           `role_id` int UNSIGNED NOT NULL,
-                                           KEY `user_id_fk_383842` (`user_id`),
+                                           `user_id` int(10) UNSIGNED NOT NULL,
+    `role_id` int(10) UNSIGNED NOT NULL,
+    KEY `user_id_fk_383842` (`user_id`),
     KEY `role_id_fk_383842` (`role_id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -635,7 +635,10 @@ CREATE TABLE IF NOT EXISTS `role_user` (
 --
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
-    (1, 1);
+                                                   (1, 1),
+                                                   (2, 1),
+                                                   (2, 2),
+                                                   (3, 1);
 
 -- --------------------------------------------------------
 
@@ -645,16 +648,16 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 
 DROP TABLE IF EXISTS `schedules`;
 CREATE TABLE IF NOT EXISTS `schedules` (
-                                           `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                           `day_number` int NOT NULL,
-                                           `start_time` time NOT NULL,
-                                           `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                           `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `day_number` int(11) NOT NULL,
+    `start_time` time NOT NULL,
+    `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `subtitle` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     `deleted_at` timestamp NULL DEFAULT NULL,
-    `speaker_id` int UNSIGNED DEFAULT NULL,
-    `event_id` int DEFAULT NULL,
+    `speaker_id` int(10) UNSIGNED DEFAULT NULL,
+    `event_id` int(11) DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY `speaker_fk_383954` (`speaker_id`)
     ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -677,8 +680,8 @@ INSERT INTO `schedules` (`id`, `day_number`, `start_time`, `title`, `subtitle`, 
 
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
-                                          `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                          `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                          `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
     `value` longtext COLLATE utf8mb4_unicode_ci,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
@@ -691,22 +694,22 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`, `deleted_at`) VALUES
-                                                                                            (1, 'title', 'Welcome to the Ultimate<br><span>Event Experience</span>', '2024-08-25 16:51:37', '2024-08-27 16:17:30', NULL),
-                                                                                            (2, 'subtitle', 'Elevating Experiences: Your Premier Event Management Partner', '2024-08-25 16:51:37', '2024-08-27 16:18:52', NULL),
-                                                                                            (3, 'youtube_link', 'https://www.youtube.com/watch?v=3MwMII8n1qM', '2024-08-25 16:51:37', '2024-08-27 19:58:53', NULL),
-                                                                                            (4, 'about_description', 'LASALEVENT is your trusted partner in crafting unforgettable events. We specialize in delivering seamless event management solutions, tailored to your unique vision. From corporate conferences to private celebrations, we ensure every detail is perfected, making your event truly exceptional.', '2024-08-25 16:51:37', '2024-08-27 19:52:53', NULL),
-                                                                                            (5, 'about_where', '123 Avenue de la République, La Marsa, 2078 Tunis, Tunisie', '2024-08-25 16:51:37', '2024-08-27 19:54:21', NULL),
-                                                                                            (6, 'about_when', 'Monday to Wednesday<br>10-12 December', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
-                                                                                            (7, 'contact_address', 'amal@gmail.com', '2024-08-25 16:51:37', '2024-08-27 19:54:11', NULL),
-                                                                                            (8, 'contact_phone', '+216 92 684 418', '2024-08-25 16:51:37', '2024-08-27 19:56:04', NULL),
-                                                                                            (9, 'contact_email', 'amal@gmail.com', '2024-08-25 16:51:37', '2024-08-27 19:55:12', NULL),
-                                                                                            (10, 'footer_description', 'In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
-                                                                                            (11, 'footer_address', '123 Avenue de la République,<br> La Marsa, 2078 Tunis<br>, Tunisie', '2024-08-25 16:51:37', '2024-08-27 19:55:02', NULL),
-                                                                                            (12, 'footer_twitter', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
-                                                                                            (13, 'footer_facebook', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
-                                                                                            (14, 'footer_instagram', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
-                                                                                            (15, 'footer_googleplus', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
-                                                                                            (16, 'footer_linkedin', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL);
+                                                                                            (1, 'title', 'Bienvenue dans l\'Expérience Ultime<br><span>de l\'Événement</span>', '2024-08-25 16:51:37', '2024-09-06 14:50:11', NULL),
+                                                                                            (2, 'subtitle', 'Élever les Expériences : Votre Partenaire de Premier Choix en Gestion d\'Événements', '2024-08-25 16:51:37', '2024-09-06 14:49:49', NULL),
+(3, 'youtube_link', 'https://www.youtube.com/watch?v=3MwMII8n1qM', '2024-08-25 16:51:37', '2024-08-27 19:58:53', NULL),
+(4, 'about_description', 'LASALEVENT est votre partenaire de confiance pour créer des événements inoubliables. Nous sommes spécialisés dans la fourniture de solutions de gestion d\'événements fluides, adaptées à votre vision unique. Des conférences d\'entreprise aux célébrations privées, nous veillons à ce que chaque détail soit parfait, rendant votre événement véritablement exceptionnel.', '2024-08-25 16:51:37', '2024-09-06 14:48:28', NULL),
+(5, 'about_where', '123 Avenue de la République, La Marsa, 2078 Tunis, Tunisie', '2024-08-25 16:51:37', '2024-08-27 19:54:21', NULL),
+(6, 'about_when', 'Lundi à Mercredi<br>10-12 Décembre</br>', '2024-08-25 16:51:37', '2024-09-06 14:49:20', NULL),
+(7, 'contact_address', 'amal@gmail.com', '2024-08-25 16:51:37', '2024-08-27 19:54:11', NULL),
+(8, 'contact_phone', '+216 92 684 418', '2024-08-25 16:51:37', '2024-08-27 19:56:04', NULL),
+(9, 'contact_email', 'amal@gmail.com', '2024-08-25 16:51:37', '2024-08-27 19:55:12', NULL),
+(10, 'footer_description', 'In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
+(11, 'footer_address', '123 Avenue de la République,<br> La Marsa, 2078 Tunis<br>, Tunisie', '2024-08-25 16:51:37', '2024-08-27 19:55:02', NULL),
+(12, 'footer_twitter', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
+(13, 'footer_facebook', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
+(14, 'footer_instagram', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
+(15, 'footer_googleplus', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL),
+(16, 'footer_linkedin', '#', '2024-08-25 16:51:37', '2024-08-25 16:51:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -716,29 +719,29 @@ INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`, `delet
 
 DROP TABLE IF EXISTS `speakers`;
 CREATE TABLE IF NOT EXISTS `speakers` (
-                                          `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                          `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `description` longtext COLLATE utf8mb4_unicode_ci,
-    `twitter` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `facebook` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `linkedin` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `full_description` longtext COLLATE utf8mb4_unicode_ci,
-    `created_at` timestamp NULL DEFAULT NULL,
-    `updated_at` timestamp NULL DEFAULT NULL,
-    `deleted_at` timestamp NULL DEFAULT NULL,
-    PRIMARY KEY (`id`)
-    ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `twitter` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `full_description` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `speakers`
 --
 
 INSERT INTO `speakers` (`id`, `name`, `description`, `twitter`, `facebook`, `linkedin`, `full_description`, `created_at`, `updated_at`, `deleted_at`) VALUES
-                                                                                                                                                          (1, 'hazem1', 'Coach 4', '#', '#', '#', 'Coach 4 Coach 4 Coach 4', '2024-08-25 16:51:37', '2024-09-02 22:45:02', NULL),
-                                                                                                                                                          (2, 'amal', 'Coach 3', '#', '#', '#', 'Coach 3 Coach 3', '2024-08-25 16:51:41', '2024-09-02 22:44:39', NULL),
-                                                                                                                                                          (3, 'Hannen', 'Fugiat laborum et', '#', '#', '#', 'Qui molestiae dignissimos dolores. Vel omnis sunt ut perspiciatis impedit. Ut suscipit delectus dolorem recusandae soluta assumenda. Et tempora unde qui. Officia omnis consequuntur eligendi aut.', '2024-08-25 16:51:41', '2024-08-28 19:12:33', '2024-08-28 19:12:33'),
-                                                                                                                                                          (4, 'Soulayma', 'Coach 2', '#', '#', '#', 'Coach 2 Coach 2', '2024-08-25 16:51:41', '2024-09-02 22:44:27', NULL),
-                                                                                                                                                          (5, 'Samah', 'Coach1', '#', '#', '#', 'Coach1 Coach1', '2024-08-25 16:51:42', '2024-09-02 22:44:13', NULL);
+(1, 'hazem1', 'Coach 4', '#', '#', '#', 'Coach 4 Coach 4 Coach 4', '2024-08-25 16:51:37', '2024-09-02 22:45:02', NULL),
+(2, 'amal', 'Coach 3', '#', '#', '#', 'Coach 3 Coach 3', '2024-08-25 16:51:41', '2024-09-02 22:44:39', NULL),
+(3, 'Hannen', 'Fugiat laborum et', '#', '#', '#', 'Qui molestiae dignissimos dolores. Vel omnis sunt ut perspiciatis impedit. Ut suscipit delectus dolorem recusandae soluta assumenda. Et tempora unde qui. Officia omnis consequuntur eligendi aut.', '2024-08-25 16:51:41', '2024-08-28 19:12:33', '2024-08-28 19:12:33'),
+(4, 'Soulayma', 'Coach 2', '#', '#', '#', 'Coach 2 Coach 2', '2024-08-25 16:51:41', '2024-09-02 22:44:27', NULL),
+(5, 'Samah', 'Coach1', '#', '#', '#', 'Coach1 Coach1', '2024-08-25 16:51:42', '2024-09-02 22:44:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -748,14 +751,14 @@ INSERT INTO `speakers` (`id`, `name`, `description`, `twitter`, `facebook`, `lin
 
 DROP TABLE IF EXISTS `sponsors`;
 CREATE TABLE IF NOT EXISTS `sponsors` (
-                                          `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                          `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `created_at` timestamp NULL DEFAULT NULL,
-    `updated_at` timestamp NULL DEFAULT NULL,
-    `deleted_at` timestamp NULL DEFAULT NULL,
-    PRIMARY KEY (`id`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -765,25 +768,25 @@ CREATE TABLE IF NOT EXISTS `sponsors` (
 
 DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE IF NOT EXISTS `tickets` (
-                                         `id` int NOT NULL AUTO_INCREMENT,
-                                         `event_id` int NOT NULL,
-                                         `user_name` varchar(255) NOT NULL,
-    `user_email` varchar(255) NOT NULL,
-    `user_phone` varchar(20) NOT NULL,
-    `pay_ref` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-    `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    KEY `event_id` (`event_id`)
-    ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `user_phone` varchar(20) NOT NULL,
+  `pay_ref` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `event_id` (`event_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `tickets`
 --
 
 INSERT INTO `tickets` (`id`, `event_id`, `user_name`, `user_email`, `user_phone`, `pay_ref`, `created_at`, `updated_at`) VALUES
-                                                                                                                             (1, 5, 'Amal', 'Amal@gmail.com', '55851451', '', '2024-09-03 10:06:25', '2024-09-03 10:06:25'),
-                                                                                                                             (2, 5, 'amal2', 'amal2@gmail.com', '92684418', NULL, '2024-09-03 12:02:27', '2024-09-03 12:02:27');
+(1, 5, 'Amal', 'Amal@gmail.com', '55851451', '', '2024-09-03 10:06:25', '2024-09-03 10:06:25'),
+(2, 5, 'amal2', 'amal2@gmail.com', '92684418', NULL, '2024-09-03 12:02:27', '2024-09-03 12:02:27');
 
 -- --------------------------------------------------------
 
@@ -793,24 +796,25 @@ INSERT INTO `tickets` (`id`, `event_id`, `user_name`, `user_email`, `user_phone`
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-                                       `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                       `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `email_verified_at` datetime DEFAULT NULL,
-    `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `remember_token` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `created_at` timestamp NULL DEFAULT NULL,
-    `updated_at` timestamp NULL DEFAULT NULL,
-    `deleted_at` timestamp NULL DEFAULT NULL,
-    PRIMARY KEY (`id`)
-    ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` datetime DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-    (1, 'Admin', 'admin@admin.com', NULL, '$2y$10$7Xn/8bPJ89ypj0cIxwoH9OOXnbK/.9xrLfFh2G4LUSRkw6j7Agn0K', NULL, '2019-09-24 18:16:02', '2019-09-24 18:16:02', NULL);
+(1, 'Admin', 'admin@admin.com', NULL, '$2y$10$7Xn/8bPJ89ypj0cIxwoH9OOXnbK/.9xrLfFh2G4LUSRkw6j7Agn0K', NULL, '2019-09-24 18:16:02', '2019-09-24 18:16:02', NULL),
+(3, 'amal', 'amal@gmail.com', NULL, '$2y$10$nUuYHi7m6z0fkZe0yEbM8.D94KRHdMgd0ARF6dNyx5J5N1Ofzze16', NULL, '2024-09-06 13:07:24', '2024-09-06 13:07:24', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,11 +1,12 @@
 <section id="schedule" class="section-with-bg">
   <div class="container wow fadeInUp">
-    <div class="section-header">
-      <h2>Event Schedule</h2>
-      <p>Here is our event schedule</p>
-    </div>
+      <div class="section-header">
+          <h2>Programme de l'événement</h2>
+          <p>Voici le programme de notre événement</p>
+      </div>
 
-    <ul class="nav nav-tabs" role="tablist">
+
+      <ul class="nav nav-tabs" role="tablist">
       @foreach($schedules as $key => $day)
         <li class="nav-item">
           <a class="nav-link{{ $key === 1 ? ' active' : '' }}" href="#day-{{ $key }}" role="tab" data-toggle="tab">Day {{ $key }}</a>
@@ -14,8 +15,9 @@
     </ul>
 
       <h3 class="sub-heading">
-          Explore our lineup of upcoming events and secure your place at engaging and informative sessions led by industry experts.
+          Découvrez notre programmation des événements à venir et réservez votre place pour des sessions captivantes et informatives animées par des experts du secteur.
       </h3>
+
 
 
       <div class="tab-content row justify-content-center">

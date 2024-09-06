@@ -1,11 +1,11 @@
 <section id="speakers" class="wow fadeInUp">
   <div class="container">
-    <div class="section-header">
-      <h2>Event Speakers</h2>
-      <p>Here are some of our speakers</p>
-    </div>
+      <div class="section-header">
+          <h2>Intervenants de l'événement</h2>
+          <p>Voici quelques-uns de nos intervenants</p>
+      </div>
 
-    <div class="row">
+      <div class="row">
       @foreach($speakers as $speaker)
         <div class="col-lg-4 col-md-6">
           <div class="speaker">
