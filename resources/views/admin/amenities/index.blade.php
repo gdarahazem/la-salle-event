@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@can('amenity_create')
+@if(Auth::user()->id == 1)
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.amenities.create") }}">
@@ -8,7 +8,7 @@
             </a>
         </div>
     </div>
-@endcan
+@endif
 <div class="card">
     <div class="card-header">
         MarketPlace List
@@ -64,23 +64,22 @@
                                     </a>
                                 @endcan
 
-                                @can('amenity_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.amenities.edit', $amenity->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
 
-                                @can('amenity_delete')
+                                    @if(Auth::user()->id == 1)
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.amenities.edit', $amenity->id) }}">
+                                            {{ trans('global.edit') }}
+                                        </a>
                                     <form action="{{ route('admin.amenities.destroy', $amenity->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
-                                @endcan
+                                        <a class="btn btn-xs btn-warning" href="mailto:{{ $amenity->email }}">
+                                            Contacter par mail
+                                        </a>
+                                    @endif
 
-                                    <a class="btn btn-xs btn-warning" href="mailto:{{ $amenity->email }}">
-                                        Contacter par mail
-                                    </a>
+
 
                             </td>
 
@@ -131,11 +130,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  $('.datatable-Amenity:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
+
 })
 
 </script>
