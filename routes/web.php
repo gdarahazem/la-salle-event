@@ -11,6 +11,7 @@ Route::get('speaker/{speaker}', 'HomeController@view')->name('speaker');
 Route::redirect('/home', '/admin');
 Route::get("events/{venue}/show", [VenuesController::class, "showVisitor"])->name("venues.show.visitor");
 
+Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
 Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
 
 Route::post('/initPayment/{venue}', [PaymentController::class, 'initPayment'])

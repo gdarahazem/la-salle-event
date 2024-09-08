@@ -182,6 +182,17 @@
                         </a>
                     </li>
                 @endcan
+
+                <li class="nav-item">
+                    <a href="{{ route("tickets.index") }}" class="nav-link {{ request()->is('admin/amenities') || request()->is('admin/amenities/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-check">
+
+                        </i>
+                        <p>
+                            <span>Reservation</span>
+                        </p>
+                    </a>
+                </li>
 {{--                @can('price_access')--}}
 {{--                    <li class="nav-item">--}}
 {{--                        <a href="{{ route("admin.prices.index") }}" class="nav-link {{ request()->is('admin/prices') || request()->is('admin/prices/*') ? 'active' : '' }}">--}}

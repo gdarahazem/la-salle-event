@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
 {
+    public function index()
+    {
+        $tickets = Ticket::all();
+
+        return view('admin.tickets.index', compact('tickets'));
+    }
     public function store(Request $request)
     {
 
