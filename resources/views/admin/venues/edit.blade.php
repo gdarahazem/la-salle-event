@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header">
-            Edit Event
+Modifier l'événement
         </div>
 
         <div class="card-body">

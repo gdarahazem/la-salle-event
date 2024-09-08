@@ -13,7 +13,7 @@
                     <tr>
                         <th width="10"></th>
                         <th>ID</th>
-                        <th>ID Événement</th>
+                        <th>Événement</th>
                         <th>Nom d'utilisateur</th>
                         <th>Email d'utilisateur</th>
                         <th>Téléphone d'utilisateur</th>
@@ -28,7 +28,7 @@
                         <tr data-entry-id="{{ $ticket->id }}">
                             <td></td>
                             <td>{{ $ticket->id ?? '' }}</td>
-                            <td>{{ $ticket->event_id ?? '' }}</td>
+                            <td>{{ $ticket->venue->name ?? '' }}</td>
                             <td>{{ $ticket->user_name ?? '' }}</td>
                             <td>{{ $ticket->user_email ?? '' }}</td>
                             <td>{{ $ticket->user_phone ?? '' }}</td>

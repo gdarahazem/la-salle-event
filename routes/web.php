@@ -11,7 +11,6 @@ Route::get('speaker/{speaker}', 'HomeController@view')->name('speaker');
 Route::redirect('/home', '/admin');
 Route::get("events/{venue}/show", [VenuesController::class, "showVisitor"])->name("venues.show.visitor");
 
-Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
 Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
 
 Route::post('/initPayment/{venue}', [PaymentController::class, 'initPayment'])
@@ -23,6 +22,9 @@ Route::get('/payment_status', [PaymentController::class, 'processPayment'])
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
+
+
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');

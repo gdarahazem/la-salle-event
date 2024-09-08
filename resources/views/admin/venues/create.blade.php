@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        Create Event
+Créer un événement
     </div>
 
     <div class="card-body">

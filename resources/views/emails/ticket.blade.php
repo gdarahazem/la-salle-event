@@ -57,13 +57,13 @@
         @endif
     </div>
     <div class="ticket-body">
-        <h2>Event Details</h2>
+        <h2>Détails de l'événement</h2>
         <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($event->event_date)->format('d M, Y') }}</p>
-        <p><strong>Venue:</strong> {{ $event->address }}</p>
+        <p><strong>Adresse:</strong> {{ $event->address }}</p>
         <p><strong>Description:</strong> {{ $event->description }}</p>
     </div>
     <div class="ticket-footer">
-        <p>Thank you for registering. We look forward to seeing you at the event!</p>
+        <p>Merci de votre inscription. Nous avons hâte de vous voir à l'événement !</p>
     </div>
 </div>
 </body>

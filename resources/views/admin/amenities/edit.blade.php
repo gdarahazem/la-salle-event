@@ -1,79 +1,83 @@
 @extends('layouts.admin')
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        Edit MarketPlace
-    </div>
+    <div class="card">
+        <div class="card-header">
+            Modifier marketPlace
+        </div>
 
-    <div class="card-body">
-        <form action="{{ route("admin.amenities.update", [$amenity->id]) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                <label for="name">{{ trans('cruds.amenity.fields.name') }}*</label>
-                <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($amenity) ? $amenity->name : '') }}" required>
-                @if($errors->has('name'))
-                    <p class="help-block">
-                        {{ $errors->first('name') }}
+        <div class="card-body">
+            <form action="{{ route("admin.amenities.update", [$amenity->id]) }}" method="POST"
+                  enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                    <label for="name">Nom*</label>
+                    <input type="text" id="name" name="name" class="form-control"
+                           value="{{ old('name', isset($amenity) ? $amenity->name : '') }}" required>
+                    @if($errors->has('name'))
+                        <p class="help-block">
+                            {{ $errors->first('name') }}
+                        </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('cruds.amenity.fields.name_helper') }}
                     </p>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.amenity.fields.name_helper') }}
-                </p>
-            </div>
-
-            <!-- New Phone Field -->
-            <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
-                <label for="phone">Phone*</label>
-                <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone', isset($amenity) ? $amenity->phone : '') }}" required>
-                @if($errors->has('phone'))
-                    <p class="help-block">
-                        {{ $errors->first('phone') }}
-                    </p>
-                @endif
-                <p class="helper-block">
-                    Please enter the phone number associated with this amenity.
-                </p>
-            </div>
-
-            <!-- New Email Field -->
-            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                <label for="email">Email*</label>
-                <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($amenity) ? $amenity->email : '') }}" required>
-                @if($errors->has('email'))
-                    <p class="help-block">
-                        {{ $errors->first('email') }}
-                    </p>
-                @endif
-                <p class="helper-block">
-                    Please enter the email associated with this amenity.
-                </p>
-            </div>
-
-            <div class="form-group {{ $errors->has('photos') ? 'has-error' : '' }}">
-                <label for="photos"> Photos </label>
-                <div class="needsclick dropzone" id="photos-dropzone">
-
                 </div>
-                @if($errors->has('photos'))
-                    <p class="help-block">
-                        {{ $errors->first('photos') }}
+
+                <!-- New Phone Field -->
+                <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
+                    <label for="phone">Téléphone*</label>
+                    <input type="text" id="phone" name="phone" class="form-control"
+                           value="{{ old('phone', isset($amenity) ? $amenity->phone : '') }}" required>
+                    @if($errors->has('phone'))
+                        <p class="help-block">
+                            {{ $errors->first('phone') }}
+                        </p>
+                    @endif
+                    <p class="helper-block">
+Veuillez saisir le numéro de téléphone associé à cet équipement.
                     </p>
-                @endif
-                <p class="helper-block">
+                </div>
 
-                </p>
-            </div>
+                <!-- New Email Field -->
+                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" class="form-control"
+                           value="{{ old('email', isset($amenity) ? $amenity->email : '') }}" required>
+                    @if($errors->has('email'))
+                        <p class="help-block">
+                            {{ $errors->first('email') }}
+                        </p>
+                    @endif
+                    <p class="helper-block">
+Veuillez saisir l'e-mail associé à cet équipement.
+                    </p>
+                </div>
 
-            <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-            </div>
-        </form>
+                <div class="form-group {{ $errors->has('photos') ? 'has-error' : '' }}">
+                    <label for="photos"> Photos </label>
+                    <div class="needsclick dropzone" id="photos-dropzone">
+
+                    </div>
+                    @if($errors->has('photos'))
+                        <p class="help-block">
+                            {{ $errors->first('photos') }}
+                        </p>
+                    @endif
+                    <p class="helper-block">
+
+                    </p>
+                </div>
+
+                <div>
+                    <input class="btn btn-danger" type="submit" value="Enregistrer">
+                </div>
+            </form>
 
 
+        </div>
     </div>
-</div>
 @endsection
 
 
@@ -112,7 +116,12 @@
                 @if(isset($amenity) && $amenity->photos)
                 var files =
                     {!! json_encode($amenity->photos) !!}
-                    for (var i in files) {
+                    for(
+                var i
+            in
+                files
+            )
+                {
                     var file = files[i]
                     this.options.addedfile.call(this, file)
                     this.options.thumbnail.call(this, file, file.url)

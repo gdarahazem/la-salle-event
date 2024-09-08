@@ -13,4 +13,11 @@ class Ticket extends Model
         'user_email',
         'user_phone',
     ];
+
+    public function venue()
+    {
+        return $this->belongsTo(Venue::class, 'event_id');
+    }
+
+
 }

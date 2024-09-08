@@ -65,7 +65,7 @@
 
                                             </i>
                                             <p>
-                                                <span>{{ trans('cruds.user.title') }}</span>
+                                                <span>Organisateurs</span>
                                             </p>
                                         </a>
                                     </li>
@@ -74,18 +74,18 @@
                         </li>
                     @endif
                 @endcan
-                @can('setting_access')
-                    <li class="nav-item">
-                        <a href="{{ route("admin.settings.index") }}" class="nav-link {{ request()->is('admin/settings') || request()->is('admin/settings/*') ? 'active' : '' }}">
-                            <i class="fa-fw fas fa-cogs">
+{{--                @can('setting_access')--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="{{ route("admin.settings.index") }}" class="nav-link {{ request()->is('admin/settings') || request()->is('admin/settings/*') ? 'active' : '' }}">--}}
+{{--                            <i class="fa-fw fas fa-cogs">--}}
 
-                            </i>
-                            <p>
-                                <span>{{ trans('cruds.setting.title') }}</span>
-                            </p>
-                        </a>
-                    </li>
-                @endcan
+{{--                            </i>--}}
+{{--                            <p>--}}
+{{--                                <span>{{ trans('cruds.setting.title') }}</span>--}}
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endcan--}}
                 @can('speaker_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.speakers.index") }}" class="nav-link {{ request()->is('admin/speakers') || request()->is('admin/speakers/*') ? 'active' : '' }}">
@@ -117,7 +117,7 @@
 
                             </i>
                             <p>
-                                <span>Events</span>
+                                <span>Événements</span>
                             </p>
                         </a>
                     </li>
@@ -170,7 +170,6 @@
 {{--                        </a>--}}
 {{--                    </li>--}}
 {{--                @endcan--}}
-                @can('amenity_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.amenities.index") }}" class="nav-link {{ request()->is('admin/amenities') || request()->is('admin/amenities/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-check">
@@ -181,10 +180,9 @@
                             </p>
                         </a>
                     </li>
-                @endcan
 
                 <li class="nav-item">
-                    <a href="{{ route("tickets.index") }}" class="nav-link {{ request()->is('admin/amenities') || request()->is('admin/amenities/*') ? 'active' : '' }}">
+                    <a href="{{ route("admin.tickets.index") }}" class="nav-link {{ request()->is('admin/tickets') || request()->is('admin/tickets/*') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-check">
 
                         </i>
