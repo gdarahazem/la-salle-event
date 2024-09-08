@@ -53,8 +53,5 @@
         <div class="copyright">
             &copy; Copyright <strong>{{ env('APP_NAME', 'TheEvent') }}</strong>. Tous droits réservés
         </div>
-        <div class="credits">
-            Designé par <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
     </div>
 </footer><!-- #footer -->

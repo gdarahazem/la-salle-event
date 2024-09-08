@@ -60,7 +60,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Galleries
     Route::delete('galleries/destroy', 'GalleriesController@massDestroy')->name('galleries.massDestroy');
-    Route::post('galleries/media', 'GalleriesController@storeMedia')->name('galleries.storeMedia');
+    Route::post('galleries/media', 'AmenitiesController@storeMedia')->name('galleries.storeMedia');
     Route::resource('galleries', 'GalleriesController');
 
     // Sponsors
@@ -74,6 +74,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Amenities
     Route::delete('amenities/destroy', 'AmenitiesController@massDestroy')->name('amenities.massDestroy');
+    Route::post('amenities/media', 'AmenitiesController@storeMedia')->name('amenities.storeMedia');
     Route::resource('amenities', 'AmenitiesController');
 
     // Prices
